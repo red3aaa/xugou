@@ -1,4 +1,4 @@
-import { Box, Card, Flex, Text, Badge } from '@radix-ui/themes';
+import { Box, Card, Flex, Text} from '@radix-ui/themes';
 import { CheckCircledIcon, CrossCircledIcon, QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { Monitor } from '../api/monitors';
 import HeartbeatGrid from './HeartbeatGrid';
@@ -30,18 +30,7 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
   };
 
   // 状态颜色映射
-  const statusColors: { [key: string]: string } = {
-    'up': '#43A047',
-    'down': '#E53935',
-    'pending': 'amber'
-  };
-
-  // 状态文本映射
-  const statusText: { [key: string]: string } = {
-    'up': t('monitorCard.status.up'),
-    'down': t('monitorCard.status.down'),
-    'pending': t('monitorCard.status.pending')
-  };
+  
 
   // 获取当前监控的状态
   const currentStatus = monitor.status || 'pending';
