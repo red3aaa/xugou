@@ -54,9 +54,8 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
             <StatusIcon status={currentStatus} />
             <Text weight="medium">{monitor.name}</Text>
           </Flex>
-          <Badge color={statusColors[currentStatus] as any}>
-            {statusText[currentStatus]}
-          </Badge>
+          
+          
         </Flex>
         
         <Flex align="center" gap="2" style={{ width: '100%', minHeight: '8px' }}>
