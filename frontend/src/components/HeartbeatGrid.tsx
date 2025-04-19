@@ -13,9 +13,9 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
   const getColor = (itemStatus: string) => {
     switch (itemStatus) {
       case 'up':
-        return '#006400';
+        return '#43A047';
       case 'down':
-        return '#FF0000';
+        return '#E53935';
       case 'unknown':
         return 'var(--gray-5)';
       default:
