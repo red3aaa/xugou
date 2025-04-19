@@ -31,8 +31,8 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
 
   // 状态颜色映射
   const statusColors: { [key: string]: string } = {
-    'up': 'green',
-    'down': 'red',
+    'up': '#43A047',
+    'down': '#E53935',
     'pending': 'amber'
   };
 
