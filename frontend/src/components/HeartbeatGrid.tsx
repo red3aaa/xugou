@@ -13,9 +13,9 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
   const getColor = (itemStatus: string) => {
     switch (itemStatus) {
       case 'up':
-        return 'var(--green-5)';
+        return 'var(--green-1)';
       case 'down':
-        return 'var(--red-5)';
+        return 'var(--tomato-1)';
       case 'unknown':
         return 'var(--gray-5)';
       default:
@@ -27,9 +27,9 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
   const getHoverColor = (itemStatus: string) => {
     switch (itemStatus) {
       case 'up':
-        return 'var(--green-6)';
+        return 'var(--green-2)';
       case 'down':
-        return 'var(--red-6)';
+        return 'var(--tomato-2)';
       case 'unknown':
         return 'var(--gray-6)';
       default:
