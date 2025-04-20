@@ -24,9 +24,9 @@ const StatusBar = ({ status, history = [] }: { status: string, uptime: number, h
   const getColor = (itemStatus: string) => {
     switch (itemStatus) {
       case 'up':
-        return 'var(--green-5)';
+        return '#5EB761';
       case 'down':
-        return 'var(--red-5)';
+        return '#F44336';
       default:
         return 'var(--gray-5)';
     }
@@ -36,9 +36,9 @@ const StatusBar = ({ status, history = [] }: { status: string, uptime: number, h
   const getHoverColor = (itemStatus: string) => {
     switch (itemStatus) {
       case 'up':
-        return 'var(--green-6)';
+        return '#1B5E20';
       case 'down':
-        return 'var(--red-6)';
+        return '#F44336';
       default:
         return 'var(--gray-6)';
     }
@@ -64,7 +64,7 @@ const StatusBar = ({ status, history = [] }: { status: string, uptime: number, h
   const boxWidth = `${100 / maxPoints}%`;
   
   return (
-    <Flex gap="1" style={{ width: '100%' }}>
+    <Flex gap="1">
       {displayHistory.map((item, index) => (
         <Box
           key={item.id || `empty-${index}`}
@@ -72,7 +72,7 @@ const StatusBar = ({ status, history = [] }: { status: string, uptime: number, h
             width: boxWidth,
             height: '20px',
             backgroundColor: getColor(item.status),
-            borderRadius: '2px',
+            borderRadius: '3px',
             transition: 'background-color 0.2s',
             cursor: 'pointer'
           }}
@@ -86,6 +86,7 @@ const StatusBar = ({ status, history = [] }: { status: string, uptime: number, h
         />
       ))}
     </Flex>
+
   );
 };
 
@@ -273,23 +274,23 @@ const MonitorDetail = () => {
             <Tabs.Content value="overview">
               <Grid columns={{ initial: '1', sm: '2' }} gap="4">
                 <Card>
-                  <Flex direction="column" gap="3">
-                    <Heading size="4">{t('monitor.status.info')}</Heading>
-                    <Grid columns="2" gap="3">
-                      <Text>{t('common.status')}:</Text>
-                      <Flex align="center" gap="1">
-                        <StatusIcon status={monitor.status} />
-                        <Text>{monitor.status === 'up' ? t('monitor.status.normal') : monitor.status === 'down' ? t('monitor.status.failure') : t('monitor.status.pending')}</Text>
-                      </Flex>
-                      <Text>{t('monitor.uptime')}:</Text>
-                      <Box style={{ gridColumn: "2" }}>
+                 <Flex direction="column" gap="3">
+                      <Heading size="4">{t('monitor.status.info')}</Heading>
+                      <Grid columns="2" gap="3">
+                        <Text>{t('common.status')}:</Text>
+                        <Flex align="center" gap="1">
+                          <StatusIcon status={monitor.status} />
+                          <Text>{monitor.status === 'up' ? t('monitor.status.normal') : monitor.status === 'down' ? t('monitor.status.failure') : t('monitor.status.pending')}</Text>
+                        </Flex>
+                        <Text>{t('monitor.responseTime')}:</Text>
+                        <Text>{monitor.response_time}ms</Text>
+                        <Text>{t('monitor.lastCheck')}:</Text>
+                        <Text>{monitor.last_checked || t('monitor.notChecked')}</Text>
+                      </Grid>
+                      <Grid columns="1" gap="3">
+                        <Text>{t('monitor.uptime')}:</Text>
                         <StatusBar status={monitor.status} uptime={monitor.uptime} history={monitor.history} />
-                      </Box>
-                      <Text>{t('monitor.responseTime')}:</Text>
-                      <Text>{monitor.response_time}ms</Text>
-                      <Text>{t('monitor.lastCheck')}:</Text>
-                      <Text>{monitor.last_checked || t('monitor.notChecked')}</Text>
-                    </Grid>
+                      </Grid>
                   </Flex>
                 </Card>
 
@@ -298,7 +299,7 @@ const MonitorDetail = () => {
                     <Heading size="4">{t('monitor.basicInfo')}</Heading>
                     <Grid columns="2" gap="3">
                       <Text>URL:</Text>
-                      <Text>{monitor.url}</Text>
+                      <Text><a href={monitor.url}>{monitor.url}</a> </Text>
                       <Text>{t('monitor.method')}:</Text>
                       <Text>{monitor.method}</Text>
                       <Text>{t('monitor.interval')}:</Text>

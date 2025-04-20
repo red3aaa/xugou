@@ -13,9 +13,9 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
   const getColor = (itemStatus: string) => {
     switch (itemStatus) {
       case 'up':
-        return '#43A047';
+        return '#5EB761';
       case 'down':
-        return '#E53935';
+        return '#F44336';
       case 'unknown':
         return 'var(--gray-5)';
       default:
@@ -29,7 +29,7 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
       case 'up':
         return '#1B5E20';
       case 'down':
-        return '#B71C1C';
+        return '#F44336';
       case 'unknown':
         return 'var(--gray-6)';
       default:
@@ -75,12 +75,12 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
   }
 
   // 每个点的大小
-  const pointSize = 12;
+  const pointSize = 30;
 
   return (
     <Box>
       {/* 单行网格点 */}
-      <Flex gap="2">
+      <Flex gap="1">
         {displayHistory.map((item, index) => (
           <Box
             key={index}
@@ -88,7 +88,7 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
               width: `${pointSize}px`,
               height: `${pointSize}px`,
               backgroundColor: getColor(item.status),
-              borderRadius: '50%',
+              borderRadius: '10px',
               transition: 'all 0.2s ease-in-out',
               cursor: 'pointer',
             }}
@@ -116,7 +116,7 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
               width: `${pointSize}px`,
               height: `${pointSize}px`,
               backgroundColor: 'var(--gray-3)',
-              borderRadius: '50%',
+              borderRadius: '10px',
             }}
           />
         ))}
@@ -125,9 +125,10 @@ const HeartbeatGrid = ({ uptime, history = [] }: { uptime: number, history?: (Mo
       <Flex justify="between" mt="3">
         <Text size="1" style={{ color: 'var(--gray-9)' }}>{t('heartbeatGrid.uptime')}: {normalizedUptime.toFixed(2)}%</Text>
         <Flex gap="2" align="center">
-          <Box style={{ width: '8px', height: '8px', backgroundColor: 'var(--green-5)', borderRadius: '50%' }} />
+
+          <Box style={{ width: '8px', height: '8px', backgroundColor: '#5EB761', borderRadius: '50%' }} />
           <Text size="1" style={{ color: 'var(--gray-9)' }}>{t('heartbeatGrid.up')}</Text>
-          <Box style={{ width: '8px', height: '8px', backgroundColor: 'var(--red-5)', borderRadius: '50%', marginLeft: '8px' }} />
+          <Box style={{ width: '8px', height: '8px', backgroundColor: '#E53935', borderRadius: '50%', marginLeft: '8px' }} />
           <Text size="1" style={{ color: 'var(--gray-9)' }}>{t('heartbeatGrid.down')}</Text>
         </Flex>
       </Flex>

@@ -161,7 +161,7 @@ const StatusPage = () => {
               <Heading size="5" mb="4">{t('statusPage.apiServices')}</Heading>
               <Grid columns={{ initial: '1', md: '2' }} gap="4">
                 {data.monitors.map(monitor => (
-                  <MonitorCard key={monitor.id} monitor={monitor} />
+                  <MonitorCard key={monitor.id} monitor={monitor} showUrl={false}/>
                 ))}
               </Grid>
             </Box>

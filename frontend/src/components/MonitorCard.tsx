@@ -1,4 +1,4 @@
-import { Box, Card, Flex, Text} from '@radix-ui/themes';
+import { Box, Card, Flex, Text, Badge } from '@radix-ui/themes';
 import { CheckCircledIcon, CrossCircledIcon, QuestionMarkCircledIcon } from '@radix-ui/react-icons';
 import { Monitor } from '../api/monitors';
 import HeartbeatGrid from './HeartbeatGrid';
@@ -7,15 +7,16 @@ import { useTranslation } from 'react-i18next';
 
 interface MonitorCardProps {
   monitor: Monitor;
+  showUrl: boolean;
 }
 
 /**
  * API监控卡片组件
  * 用于显示单个API监控服务的状态信息
  */
-const MonitorCard = ({ monitor }: MonitorCardProps) => {
+const MonitorCard = ({ monitor, showUrl = true }: MonitorCardProps) => {
   const { t } = useTranslation();
-  
+
   // 状态图标组件
   const StatusIcon = ({ status }: { status: string }) => {
     switch (status) {
@@ -30,7 +31,18 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
   };
 
   // 状态颜色映射
-  
+  const statusColors: { [key: string]: string } = {
+    'up': 'green',
+    'down': 'red',
+    'pending': 'amber'
+  };
+
+  // 状态文本映射
+  const statusText: { [key: string]: string } = {
+    'up': t('monitorCard.status.up'),
+    'down': t('monitorCard.status.down'),
+    'pending': t('monitorCard.status.pending')
+  };
 
   // 获取当前监控的状态
   const currentStatus = monitor.status || 'pending';
@@ -43,20 +55,27 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
             <StatusIcon status={currentStatus} />
             <Text weight="medium">{monitor.name}</Text>
           </Flex>
-          
-          
+          <Badge color={statusColors[currentStatus] as any}>
+            {statusText[currentStatus]}
+          </Badge>
+
         </Flex>
-        
+    {showUrl && (
+        <Flex>
+          <Text size="2"><a href={monitor.url}>{monitor.url}</a></Text>
+        </Flex>
+     )}
+
         <Flex align="center" gap="2" style={{ width: '100%', minHeight: '8px' }}>
           <Text size="1" color="gray">
             {t('monitorCard.responseTime')}: {monitor.response_time || t('monitorCard.unknown')}ms
           </Text>
         </Flex>
-          
+
         <Box pt="2" style={{ width: '100%' }}>
-          <HeartbeatGrid 
-            uptime={monitor.uptime} 
-            history={monitor.history} 
+          <HeartbeatGrid
+            uptime={monitor.uptime}
+            history={monitor.history}
           />
         </Box>
       </Flex>

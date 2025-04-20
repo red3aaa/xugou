@@ -175,7 +175,7 @@ const Dashboard = () => {
             </Flex>
             <Grid columns={{ initial: '1', sm: '2', lg: '3' }} gap="4">
               {monitors.slice(0, 3).map(monitor => (
-                <MonitorCard key={monitor.id} monitor={monitor} />
+                <MonitorCard key={monitor.id} monitor={monitor}  />
               ))}
             </Grid>
           </Box>
