@@ -213,7 +213,7 @@ const MonitorsList = () => {
             <Grid columns={{ initial: '1', sm: '2', lg: '3' }} gap="4">
               {monitors.map(monitor => (
                 <Box key={monitor.id} style={{ position: 'relative' }}>
-                  <MonitorCard monitor={monitor} showUrl={false} />
+                  <MonitorCard monitor={monitor} showUrl={true} />
                   <Flex 
                     style={{ 
                       position: 'absolute', 
