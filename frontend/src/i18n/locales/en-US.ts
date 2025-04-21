@@ -158,6 +158,7 @@ const enUS = {
     'monitor.history': 'History',
     'monitor.uptime': 'Uptime',
     'monitor.responseTime': 'Response Time',
+    'monitor.avgResponseTime': 'AVG Response Time',
     'monitor.events': 'Events',
     'monitor.noEvents': 'No events',
     'monitor.manualCheck': 'Manual Check',

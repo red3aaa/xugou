@@ -158,6 +158,7 @@ const zhCN = {
     'monitor.history': '历史记录',
     'monitor.uptime': '正常运行时间',
     'monitor.responseTime': '响应时间',
+    'monitor.avgResponseTime': '平均响应',
     'monitor.events': '事件',
     'monitor.noEvents': '暂无事件',
     'monitor.manualCheck': '手动检查',
