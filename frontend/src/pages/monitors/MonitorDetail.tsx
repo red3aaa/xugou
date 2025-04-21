@@ -284,8 +284,20 @@ const MonitorDetail = () => {
                         </Flex>
                         <Text>{t('monitor.responseTime')}:</Text>
                         <Text>{monitor.response_time}ms</Text>
+
+                        <Text>{t('monitor.avgResponseTime')}:</Text>
+                      <Text>
+                        {monitor.checks?.length
+                          ? `${Math.round(
+                              monitor.checks.reduce((sum, c) => sum + c.response_time, 0) /
+                              monitor.checks.length
+                            )}ms`
+                          : '-'}
+
+                      </Text>
+
                         <Text>{t('monitor.lastCheck')}:</Text>
-                        <Text>{monitor.last_checked || t('monitor.notChecked')}</Text>
+                        <Text>{new Date(monitor.last_checked).toLocaleString() || t('monitor.notChecked')}</Text>
                       </Grid>
                       <Grid columns="1" gap="3">
                         <Text>{t('monitor.uptime')}:</Text>
